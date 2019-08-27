@@ -1,0 +1,22 @@
+{
+    "name": "steevanb/doctrine-examples",
+    "license": "MIT",
+    "description": "Examples of how to use Doctrine.",
+    "autoload": {
+        "psr-4": {
+            "DoctrineExamples\\": "examples/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DoctrineExamples\\Tests\\": "tests"
+        }
+    },
+    "require": {
+        "doctrine/orm": "2.6.*",
+        "symfony/yaml": "^4.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "8.3.*"
+    }
+}

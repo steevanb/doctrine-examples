@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+readonly PROJECT_DIRECTORY=$(realpath $(dirname $(realpath $0))/..)
+set -e
+${PROJECT_DIRECTORY}/vendor/bin/phpunit ${PROJECT_DIRECTORY}/tests
