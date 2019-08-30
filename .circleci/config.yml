@@ -37,6 +37,16 @@ jobs:
                 name: phpcs
                 command: /var/entrypoint.sh
 
+    phpcf:
+        docker:
+            - image: steevanb/php-code-fixer:2.0.19
+        working_directory: /var/php-code-fixer
+        steps:
+            - checkout
+            - run:
+                  name: phpcf
+                  command: phpcf .
+
     phpunit:
         docker:
             - image: circleci/php:7.3
@@ -75,6 +85,7 @@ workflows:
         jobs:
             - composer
             - phpcs
+            - phpcf
             - phpunit:
                 requires:
                     - composer
