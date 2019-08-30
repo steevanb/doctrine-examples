@@ -22,6 +22,21 @@ jobs:
                 paths:
                     - vendor
 
+    phpcs:
+        docker:
+            - image: steevanb/php-code-sniffs:2.0.9
+              environment:
+                  PHPCS_BOOTSTRAP: /var/phpcs/.circleci/phpcs.bootstrap.php
+                  PHPCS_PARAMETERS: --warning-severity=0 --ignore=/vendor/
+        working_directory: /var/phpcs
+        steps:
+            - checkout
+            - attach_workspace:
+                at: .
+            - run:
+                name: phpcs
+                command: /var/entrypoint.sh
+
     phpunit:
         docker:
             - image: circleci/php:7.3
@@ -56,9 +71,10 @@ jobs:
 
 workflows:
     version: '2.1'
-    PHPUnit:
+    Code quality:
         jobs:
             - composer
+            - phpcs
             - phpunit:
                 requires:
                     - composer
