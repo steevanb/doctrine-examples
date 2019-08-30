@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace DoctrineExamples\Tests;
 
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\{
+    EntityManager,
+    Tools\Setup
+};
 
 class EntityManagerFactory
 {
