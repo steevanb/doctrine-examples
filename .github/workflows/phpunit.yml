@@ -1,0 +1,8 @@
+name: PHPUnit
+on: push
+jobs:
+    phpunit:
+        name: PHPUnit
+        runs-on: docker://php:7.3
+        steps:
+            - uses: actions/checkout@v1
