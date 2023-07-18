@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace App\Tests\ManyToManyBidirectional;
 
 use DoctrineExamples\{
-    ManyToManyBidirectional\Entity\Credential,
-    ManyToManyBidirectional\Entity\User,
-    Tests\EntityManagerFactory
-};
+    Entity\Credential,
+    Entity\User,
+    Tests\EntityManagerFactory};
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -184,7 +183,7 @@ final class UserTest extends TestCase
     {
         EntityManagerFactory::getSingleton()->clear();
 
-        /** @var User $return */
+        /** @var \DoctrineExamples\Entity\User $return */
         $return = EntityManagerFactory::getSingleton()->getRepository(User::class)->find($id);
         if ($return instanceof User === false) {
             throw new \Exception('User "' . $id . '" cannot be found.');

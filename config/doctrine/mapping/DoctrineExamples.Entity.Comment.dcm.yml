@@ -1,0 +1,18 @@
+DoctrineExamples\Entity\Comment:
+    type: entity
+    table: comment
+
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+            options:
+                unsigned: true
+
+    manyToOne:
+        user:
+            targetEntity: DoctrineExamples\Entity\User
+            inversedBy: comments
+            joinColumn:
+                nullable: false

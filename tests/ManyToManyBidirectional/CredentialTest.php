@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace App\Tests\ManyToManyBidirectional;
 
 use DoctrineExamples\{
-    ManyToManyBidirectional\Entity\Credential,
-    ManyToManyBidirectional\Entity\User,
-    Tests\EntityManagerFactory
-};
+    Entity\Credential,
+    Entity\User,
+    Tests\EntityManagerFactory};
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -213,7 +212,7 @@ final class CredentialTest extends TestCase
     {
         EntityManagerFactory::getSingleton()->clear();
 
-        /** @var Credential $return */
+        /** @var \DoctrineExamples\Entity\Credential $return */
         $return = EntityManagerFactory::getSingleton()->getRepository(Credential::class)->find($id);
         if ($return instanceof Credential === false) {
             throw new \Exception('Credential "' . $id . '" cannot be found.');

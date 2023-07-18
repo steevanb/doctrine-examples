@@ -1,6 +1,6 @@
-DoctrineExamples\ManyToManyBidirectional\Entity\User:
+DoctrineExamples\Entity\User:
     type: entity
-    table: manyToMany_user
+    table: user
 
     id:
         id:
@@ -12,8 +12,13 @@ DoctrineExamples\ManyToManyBidirectional\Entity\User:
 
     manyToMany:
         credentials:
-            targetEntity: DoctrineExamples\ManyToManyBidirectional\Entity\Credential
+            targetEntity: DoctrineExamples\Entity\Credential
             inversedBy: users
             cascade: [persist]
             joinTable:
-                name: manyToMany_user_credential
+                name: users_credentials
+
+    oneToMany:
+        comments:
+            targetEntity: DoctrineExamples\Entity\Comment
+            mappedBy: user
