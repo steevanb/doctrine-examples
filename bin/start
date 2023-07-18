@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+
+readonly ROOT_PATH=$(realpath $(dirname $(realpath $0))/..)
+
+set -eu
+
+export DOCKER_UID="$(id -u)"
+export DOCKER_GID="$(id -g)"
+
+docker-compose \
+    --project-directory "${ROOT_PATH}"/docker \
+    build \
+        --pull
+
+docker-compose \
+    --project-directory "${ROOT_PATH}"/docker \
+    up \
+        --force-recreate \
+        --detach
+
+docker exec --tty --interactive doctrine-examples_php composer update
+docker exec --tty --interactive doctrine-examples_php vendor/bin/doctrine orm:schema-tool:update --force

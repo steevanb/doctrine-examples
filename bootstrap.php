@@ -7,10 +7,10 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 EntityManagerFactory::createEntityManager(
     [
-        'driver' => 'mysqli',
+        'driver' => 'pdo_mysql',
         'user' => 'root',
         'password' => 'root',
         'dbname' => 'doctrine_examples',
-        'host' => '127.0.0.1'
+        'host' => 'mysql'
     ]
 );

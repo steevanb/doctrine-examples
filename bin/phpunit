@@ -1,6 +1,12 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-set -e
-readonly PROJECT_DIRECTORY=$(realpath $(dirname $(realpath $0))/..)
+set -eu
 
-${PROJECT_DIRECTORY}/vendor/bin/phpunit -c ${PROJECT_DIRECTORY}/phpunit.xml ${PROJECT_DIRECTORY}/tests
+docker \
+    exec \
+        --tty \
+         --interactive \
+         doctrine-examples_php \
+            vendor/bin/phpunit \
+                -c /app/phpunit.xml \
+                /app/tests
