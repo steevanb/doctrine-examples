@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoctrineExamples\ManyToManyBidirectional\Entity;
+namespace DoctrineExamples\Entity;
 
 use Doctrine\Common\Collections\{
     ArrayCollection,
@@ -11,14 +11,13 @@ use Doctrine\Common\Collections\{
 
 class Credential
 {
-    /** @var ?int */
-    private $id;
+    private ?int $id;
 
-    /** @var Collection */
-    private $users;
+    private Collection $users;
 
     public function __construct()
     {
+        $this->id = null;
         $this->users = new ArrayCollection();
     }
 
@@ -27,7 +26,7 @@ class Credential
         return $this->id;
     }
 
-    public function setUsers(iterable $users): self
+    public function setUsers(iterable $users): static
     {
         $this->clearUsers();
         /** @var User $user */
@@ -38,7 +37,7 @@ class Credential
         return $this;
     }
 
-    public function addUser(User $user): self
+    public function addUser(User $user): static
     {
         if ($this->users->contains($user) === false) {
             $this->users->add($user);
@@ -54,7 +53,7 @@ class Credential
         return $this->users;
     }
 
-    public function removeUser(User $user): self
+    public function removeUser(User $user): static
     {
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
@@ -64,7 +63,7 @@ class Credential
         return $this;
     }
 
-    public function clearUsers(): self
+    public function clearUsers(): static
     {
         foreach ($this->getUsers() as $user) {
             $this->removeUser($user);

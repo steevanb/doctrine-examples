@@ -18,7 +18,7 @@ class EntityManagerFactory
         static::$entityManager = EntityManager::create(
             $params,
             Setup::createYAMLMetadataConfiguration(
-                [__DIR__ . '/../src/ManyToManyBidirectional/Config'],
+                [__DIR__ . '/../config/doctrine/mapping'],
                 true,
                 __DIR__ . '/../var'
             )

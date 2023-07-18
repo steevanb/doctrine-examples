@@ -59,7 +59,7 @@ DoctrineExamples\ManyToManyBidirectional\Entity\User:
 
     manyToMany:
         credentials:
-            targetEntity: DoctrineExamples\ManyToManyBidirectional\Entity\Credential
+            targetEntity: DoctrineExamples\Entity\Credential
             # User is defined as owning side by defining Credential::$users as inverse side
             inversedBy: users
             cascade: [persist]
@@ -86,11 +86,11 @@ class User
 }
 ```
 
-### User::setCredentials(): self
+### User::setCredentials(): static
 
 ```php
 // iterable to accept Collection, ArrayCollection, PersistentCollection, array or \Traversable instance
-public function setCredentials(iterable $credentials): self
+public function setCredentials(iterable $credentials): static
 {
     // Clear all credential links before adding new ones
     $this->clearCredentials();
@@ -105,10 +105,10 @@ public function setCredentials(iterable $credentials): self
 }
 ```
 
-### User::addCredential(Credential $credential): self
+### User::addCredential(Credential $credential): static
 
 ```php
-public function addCredential(Credential $credential): self
+public function addCredential(Credential $credential): static
 {
     // Add $credential only if it does not already exists
     if ($this->credentials->contains($credential) === false) {
@@ -135,10 +135,10 @@ public function getCredentials(): Collection
 }
 ```
 
-### User::removeCredential(Credential $credential): self
+### User::removeCredential(Credential $credential): static
 
 ```php
-public function removeCredential(Credential $credential): self
+public function removeCredential(Credential $credential): static
 {
     // Remove it only if it exists
     if ($this->credentials->contains($credential)) {
@@ -232,7 +232,7 @@ DoctrineExamples\ManyToManyBidirectional\Entity\Credential:
 
     manyToMany:
         users:
-            targetEntity: DoctrineExamples\ManyToManyBidirectional\Entity\User
+            targetEntity: DoctrineExamples\Entity\User
             # Credential is defined as inverse side by defining User::$credentials as owning side
             mappedBy: credentials
             cascade: [persist]

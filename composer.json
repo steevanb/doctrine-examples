@@ -13,7 +13,8 @@
         "doctrine/orm": "2.15.*",
         "symfony/cache": "6.3.*",
         "symfony/yaml": "6.3.*",
-        "phpunit/phpunit": "10.2.*"
+        "phpunit/phpunit": "10.2.*",
+        "symfony/var-dumper": "6.3.*"
     },
     "scripts": {
         "post-install-cmd": [

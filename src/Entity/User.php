@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoctrineExamples\ManyToManyBidirectional\Entity;
+namespace DoctrineExamples\Entity;
 
 use Doctrine\Common\Collections\{
     ArrayCollection,
@@ -18,15 +18,17 @@ use Doctrine\Common\Collections\{
  */
 class User
 {
-    /** @var ?int */
-    private $id;
+    private ?int $id;
 
-    /** @var Collection */
-    private $credentials;
+    private Collection $credentials;
+
+    private Collection $comments;
 
     public function __construct()
     {
+        $this->id = null;
         $this->credentials = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -34,7 +36,7 @@ class User
         return $this->id;
     }
 
-    public function setCredentials(iterable $credentials): self
+    public function setCredentials(iterable $credentials): static
     {
         $this->clearCredentials();
         /** @var Credential $credential */
@@ -45,7 +47,7 @@ class User
         return $this;
     }
 
-    public function addCredential(Credential $credential): self
+    public function addCredential(Credential $credential): static
     {
         if ($this->credentials->contains($credential) === false) {
             $this->credentials->add($credential);
@@ -61,7 +63,7 @@ class User
         return $this->credentials;
     }
 
-    public function removeCredential(Credential $credential): self
+    public function removeCredential(Credential $credential): static
     {
         if ($this->credentials->contains($credential)) {
             $this->credentials->removeElement($credential);
@@ -71,7 +73,7 @@ class User
         return $this;
     }
 
-    public function clearCredentials(): self
+    public function clearCredentials(): static
     {
         foreach ($this->getCredentials() as $credential) {
             $this->removeCredential($credential);
@@ -79,5 +81,10 @@ class User
         $this->credentials->clear();
 
         return $this;
+    }
+
+    public function getComments(): Collection
+    {
+        return $this->comments;
     }
 }
