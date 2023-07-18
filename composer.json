@@ -4,19 +4,24 @@
     "description": "Examples of how to use Doctrine.",
     "autoload": {
         "psr-4": {
-            "DoctrineExamples\\": "examples/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
+            "DoctrineExamples\\": "src/",
             "DoctrineExamples\\Tests\\": "tests"
         }
     },
     "require": {
-        "doctrine/orm": "2.6.*",
-        "symfony/yaml": "^4.3"
+        "php": "8.2.*",
+        "doctrine/orm": "2.15.*",
+        "symfony/cache": "6.3.*",
+        "symfony/yaml": "6.3.*",
+        "phpunit/phpunit": "10.2.*"
     },
-    "require-dev": {
-        "phpunit/phpunit": "8.3.*"
+    "scripts": {
+        "post-install-cmd": [
+            "@rm-composer-lock"
+        ],
+        "post-update-cmd": [
+            "@rm-composer-lock"
+        ],
+        "rm-composer-lock": "rm composer.lock"
     }
 }

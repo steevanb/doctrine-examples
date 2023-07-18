@@ -1,6 +1,6 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-readonly PROJECT_DIRECTORY=$(realpath $(dirname $(realpath $0))/..)
+readonly ROOT_PATH=$(realpath $(dirname $(realpath $0))/..)
 
 set -e
 
